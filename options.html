@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PTA-Extension Options</title>
+</head>
+<body>
+  <label>
+    PTA-Bridge Endpoint:
+    <input id="endpoint" type="text" style="width:400px" />
+  </label>
+  <button id="save">Save</button>
+
+  <script>
+    const input = document.getElementById("endpoint");
+    const saveBtn = document.getElementById("save");
+
+    chrome.storage.sync.get(["ptaEndpoint"], (items) => {
+      input.value = items.ptaEndpoint || "https://protraxer.com/wp-json/protraxer/v1/import-amazon";
+    });
+
+    saveBtn.addEventListener("click", () => {
+      chrome.storage.sync.set({ ptaEndpoint: input.value }, () => {
+        alert("Endpoint saved!");
+      });
+    });
+  </script>
+</body>
+</html>

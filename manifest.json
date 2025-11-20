@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "PTA-Extension",
+  "version": "1.0.0",
+  "description": "Injects an Import to PTAMesh button on Amazon product pages and sends product data to PTA-Bridge.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.amazon.com/*",
+    "https://protraxer.com/*"
+  ],
+  "action": {
+    "default_title": "PTA-Extension"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html"
+}
